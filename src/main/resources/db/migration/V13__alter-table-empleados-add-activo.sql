@@ -1,0 +1,1 @@
+alter table empleados add activo boolean not null;

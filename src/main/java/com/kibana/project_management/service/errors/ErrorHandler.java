@@ -1,6 +1,8 @@
 package com.kibana.project_management.service.errors;
 
+import com.kibana.project_management.service.errors.exceptions.ValidacionDeIntegridad;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.ValidationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,10 +19,15 @@ public class ErrorHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity errorHandlerValidation(MethodArgumentNotValidException e){
+    public ResponseEntity handlerArgumentNotValid(MethodArgumentNotValidException e){
         List<DatosErrorValidacion> errors = e.getFieldErrors().stream()
                 .map(DatosErrorValidacion::new).toList();
         return ResponseEntity.badRequest().body(errors);
+    }
+
+    @ExceptionHandler({ValidacionDeIntegridad.class, ValidationException.class})
+    public ResponseEntity errorHandlerValidation(Exception e){
+        return ResponseEntity.badRequest().body(e.getMessage());
     }
 
 

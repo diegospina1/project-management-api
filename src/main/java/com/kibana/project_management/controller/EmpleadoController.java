@@ -25,15 +25,15 @@ public class EmpleadoController {
     }
 
     @GetMapping("/listar-todos")
-    public ResponseEntity<Page<DatosListadoEmpleado>> listadoEmpleados(@PageableDefault Pageable pages){
+    public ResponseEntity<Page<DatosRespuestaEmpleado>> listadoEmpleados(@PageableDefault Pageable pages){
         return ResponseEntity.ok(empleadoService.listarTodos(pages)
-                .map(DatosListadoEmpleado::new));
+                .map(DatosRespuestaEmpleado::new));
     }
 
     @GetMapping("/listar/{id}")
-    public ResponseEntity<DatosListadoEmpleado> listadoPorId(@PathVariable("id") Long id){
+    public ResponseEntity<DatosRespuestaEmpleado> listadoPorId(@PathVariable("id") Long id){
         Empleado empleado = empleadoService.listadoPorId(id);
-        DatosListadoEmpleado datos = new DatosListadoEmpleado(empleado);
+        DatosRespuestaEmpleado datos = new DatosRespuestaEmpleado(empleado);
         return ResponseEntity.ok(datos);
     }
 
@@ -48,7 +48,6 @@ public class EmpleadoController {
                 .toUri();
 
         return ResponseEntity.created(url).body(datos);
-
     }
 
     @PutMapping("/actualizar")
@@ -71,5 +70,18 @@ public class EmpleadoController {
         empleadoService.activarEmpleado(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/listar/username/{user}")
+    public ResponseEntity<DatosRespuestaEmpleado> listarPorUser(@PathVariable("user") String user){
+        return ResponseEntity.ok(new DatosRespuestaEmpleado(empleadoService.buscarPorUser(user)));
+    }
+
+    @PutMapping("/change-password")
+    @Transactional
+    public ResponseEntity<Void> cambiarPassword(@RequestBody @Valid DatosActualizarPassword datosActualizarPassword){
+        empleadoService.cambiarPassword(datosActualizarPassword);
+        return ResponseEntity.noContent().build();
+    }
+
 
 }

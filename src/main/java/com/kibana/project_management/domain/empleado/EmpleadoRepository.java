@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
 
@@ -29,4 +31,13 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
     @Query("update Empleado e set e.activo = true where e.id = :#{#id}")
     @Modifying
     void activarEmpleado(@Param("id") Long id);
+
+    //Cambiar password
+    @Query("update Empleado e set e.password = :#{#password} where e.id= :#{#id}")
+    @Modifying
+    void cambiarPassword(@Param("password") String password, @Param("id") Long id);
+
+    //Empleado por username
+    @Query("select e from Empleado e where e.user = :#{#user}")
+    Optional<Empleado> findByUser(String user);
 }

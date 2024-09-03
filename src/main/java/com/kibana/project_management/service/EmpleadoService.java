@@ -1,11 +1,14 @@
 package com.kibana.project_management.service;
 
 import com.kibana.project_management.domain.empleado.*;
+import com.kibana.project_management.service.errors.exceptions.ValidacionDeIntegridad;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class EmpleadoService {
@@ -55,6 +58,24 @@ public class EmpleadoService {
         Empleado empleado = listadoPorId(id);
         empleado.activar();
         empleadoRepository.activarEmpleado(empleado.getId());
+    }
+
+    //Cambiar password
+    public void cambiarPassword(DatosActualizarPassword datos){
+        Optional<Empleado> empleadoOptional = empleadoRepository.findByUser(datos.user());
+        if(empleadoOptional.isPresent()){
+            Empleado empleado = empleadoOptional.get();
+            empleadoRepository.cambiarPassword(datos.password(), empleado.getId());
+        } else {
+            throw new ValidacionDeIntegridad(String.format("Usuario no encontrado: %s", datos.user()));
+        }
+
+    }
+
+    //Buscar por user
+    public Empleado buscarPorUser(String user){
+      return empleadoRepository.findByUser(user)
+              .orElseThrow(EntityNotFoundException::new);
     }
 
 }

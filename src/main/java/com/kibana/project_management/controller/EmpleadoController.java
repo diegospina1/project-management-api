@@ -32,7 +32,7 @@ public class EmpleadoController {
 
     @GetMapping("/listar/{id}")
     public ResponseEntity<DatosRespuestaEmpleado> listadoPorId(@PathVariable("id") Long id){
-        Empleado empleado = empleadoService.listadoPorId(id);
+        Empleado empleado = empleadoService.listarPorId(id);
         DatosRespuestaEmpleado datos = new DatosRespuestaEmpleado(empleado);
         return ResponseEntity.ok(datos);
     }
@@ -43,7 +43,7 @@ public class EmpleadoController {
         Empleado empleado = empleadoService.crearEmpleado(datosCreacionEmpleado);
         DatosRespuestaEmpleado datos = new DatosRespuestaEmpleado(empleado);
 
-        URI url = uriBuilder.path("/empleado/{id}")
+        URI url = uriBuilder.path("/empleado/listar/{id}")
                 .buildAndExpand(empleado.getId())
                 .toUri();
 
@@ -57,10 +57,10 @@ public class EmpleadoController {
         return ResponseEntity.ok(new DatosRespuestaEmpleado(empleado));
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/eliminar/{id}")
     @Transactional
     public ResponseEntity<Void> eliminarEmpleado(@PathVariable("id") Long id){
-        empleadoService.eliminarEmpleado(id);
+        empleadoService.desactivarEmpleado(id);
         return ResponseEntity.noContent().build();
     }
 

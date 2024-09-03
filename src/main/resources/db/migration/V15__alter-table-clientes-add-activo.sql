@@ -1,0 +1,1 @@
+alter table clientes add activo boolean not null;

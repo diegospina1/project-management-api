@@ -22,42 +22,47 @@ public class EmpleadoService {
 
     //Listar todos
     public Page<Empleado> listarTodos(Pageable pages) {
-        return empleadoRepository.findAllByActivoTrue(pages);
+        return this.empleadoRepository.findAllByActivoTrue(pages);
     }
 
     //Listar por ID
-    public Empleado listadoPorId(Long id){
-        return empleadoRepository.findById(id)
+    public Empleado listarPorId(Long id){
+        return this.empleadoRepository.findById(id)
                 .orElseThrow(EntityNotFoundException::new);
     }
 
     //Crear un usuario
     public Empleado crearEmpleado(DatosCreacionEmpleado datos){
-        return empleadoRepository.save(new Empleado(datos));
+        return this.empleadoRepository.save(new Empleado(datos));
     }
 
     //Actualizar
     public Empleado actualizarEmpleado(DatosActualizarEmpleado datos){
-        Empleado empleado = listadoPorId(datos.id());
-        empleado.actualizarEmpleado(datos);
-        DatosActualizarEmpleado datosActualizacion = new DatosActualizarEmpleado(empleado);
-        empleadoRepository.actualizarEmpleado(datosActualizacion);
+        Optional<Empleado> empleadoOptional = this.empleadoRepository.findById(datos.id());
+        if(empleadoOptional.isPresent()){
+            Empleado empleado = empleadoOptional.get();
+            empleado.actualizarEmpleado(datos);
+            DatosActualizarEmpleado datosActualizacion = new DatosActualizarEmpleado(empleado);
+            this.empleadoRepository.actualizarEmpleado(datosActualizacion);
 
-        return empleado;
+            return empleado;
+        } else {
+            throw new ValidacionDeIntegridad(String.format("Usuario no encontrado para el id: %d", datos.id()));
+        }
     }
 
     //Eliminar
-    public void eliminarEmpleado(Long id){
-        Empleado empleado = listadoPorId(id);
+    public void desactivarEmpleado(Long id){
+        Empleado empleado = listarPorId(id);
         empleado.desactivarEmpleado();
-        empleadoRepository.eliminarEmpleado(empleado.getId());
+        this.empleadoRepository.eliminarEmpleado(empleado.getId());
     }
 
     //Reactivar un empleado
     public void activarEmpleado(Long id){
-        Empleado empleado = listadoPorId(id);
+        Empleado empleado = listarPorId(id);
         empleado.activar();
-        empleadoRepository.activarEmpleado(empleado.getId());
+        this.empleadoRepository.activarEmpleado(empleado.getId());
     }
 
     //Cambiar password
@@ -65,7 +70,7 @@ public class EmpleadoService {
         Optional<Empleado> empleadoOptional = empleadoRepository.findByUser(datos.user());
         if(empleadoOptional.isPresent()){
             Empleado empleado = empleadoOptional.get();
-            empleadoRepository.cambiarPassword(datos.password(), empleado.getId());
+            this.empleadoRepository.cambiarPassword(datos.password(), empleado.getId());
         } else {
             throw new ValidacionDeIntegridad(String.format("Usuario no encontrado: %s", datos.user()));
         }
@@ -74,7 +79,7 @@ public class EmpleadoService {
 
     //Buscar por user
     public Empleado buscarPorUser(String user){
-      return empleadoRepository.findByUser(user)
+      return this.empleadoRepository.findByUser(user)
               .orElseThrow(EntityNotFoundException::new);
     }
 

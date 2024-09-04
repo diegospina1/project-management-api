@@ -1,5 +1,6 @@
-package com.kibana.project_management.domain.empleado;
+package com.kibana.project_management.domain.empleado.dto;
 
+import com.kibana.project_management.domain.empleado.Empleado;
 import jakarta.validation.constraints.NotNull;
 
 public record DatosActualizarEmpleado(

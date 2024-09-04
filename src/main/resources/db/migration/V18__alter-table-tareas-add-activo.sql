@@ -1,0 +1,1 @@
+alter table tareas add activo boolean not null;

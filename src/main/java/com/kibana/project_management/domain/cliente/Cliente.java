@@ -1,5 +1,7 @@
 package com.kibana.project_management.domain.cliente;
 
+import com.kibana.project_management.domain.cliente.dto.DatosActualizarCliente;
+import com.kibana.project_management.domain.cliente.dto.DatosCreacionCliente;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -38,5 +40,14 @@ public class Cliente {
     //Activar
     public void activarCliente() {
         this.activo = true;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "id=" + id +
+                ", nombres='" + nombres + '\'' +
+                ", activo=" + activo +
+                '}';
     }
 }

@@ -1,5 +1,6 @@
 package com.kibana.project_management.domain.empleado;
 
+import com.kibana.project_management.domain.empleado.dto.DatosActualizarEmpleado;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

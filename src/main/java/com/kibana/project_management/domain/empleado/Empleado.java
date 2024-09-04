@@ -1,5 +1,7 @@
 package com.kibana.project_management.domain.empleado;
 
+import com.kibana.project_management.domain.empleado.dto.DatosActualizarEmpleado;
+import com.kibana.project_management.domain.empleado.dto.DatosCreacionEmpleado;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

@@ -2,8 +2,8 @@ package com.kibana.project_management.service;
 
 import com.kibana.project_management.domain.cliente.Cliente;
 import com.kibana.project_management.domain.cliente.ClienteRepository;
-import com.kibana.project_management.domain.cliente.DatosActualizarCliente;
-import com.kibana.project_management.domain.cliente.DatosCreacionCliente;
+import com.kibana.project_management.domain.cliente.dto.DatosActualizarCliente;
+import com.kibana.project_management.domain.cliente.dto.DatosCreacionCliente;
 import com.kibana.project_management.service.errors.IExceptionMessages;
 import com.kibana.project_management.service.errors.exceptions.ValidacionDeIntegridad;
 import jakarta.persistence.EntityNotFoundException;
@@ -47,7 +47,7 @@ public class ClienteService implements IExceptionMessages {
 
             return cliente;
         } else {
-            throw new ValidacionDeIntegridad(noEncontrado(datos.id()));
+            throw new ValidacionDeIntegridad(noEncontradoId(datos.id()));
         }
     }
     //Desactivar cliente
@@ -58,7 +58,7 @@ public class ClienteService implements IExceptionMessages {
             cliente.desactivarCliente();
             this.clienteRepository.desactivarCliente(id);
         } else {
-            throw new ValidacionDeIntegridad(noEncontrado(id));
+            throw new ValidacionDeIntegridad(noEncontradoId(id));
         }
     }
     //Activar cliente
@@ -69,15 +69,31 @@ public class ClienteService implements IExceptionMessages {
             cliente.activarCliente();
             this.clienteRepository.activarCliente(id);
         } else {
-            throw new ValidacionDeIntegridad(noEncontrado(id));
+            throw new ValidacionDeIntegridad(noEncontradoId(id));
+        }
+    }
+    //Buscar cliente por nombres
+    public Page<Cliente> buscarClientePorNombre(String nombre, Pageable pages){
+        Page<Cliente> clientes = clienteRepository.buscarPorNombre(nombre, pages);
+        if(clientes.hasContent()){
+            return clientes;
+        } else {
+            throw new ValidacionDeIntegridad(noEncontradoString(nombre));
         }
     }
 
-    //Mensaje cliente no encontrado para un id
+    //Mensaje cliente no encontrado para ID o Nombre
     @Override
-    public String noEncontrado(Long id) {
+    public String noEncontradoId(Long id) {
         return String.format("Cliente no encontrado para el id: %d", id);
     }
+
+    @Override
+    public String noEncontradoString(String name) {
+        return String.format("Cliente no encontrado: %s", name);
+    }
+
+
 
 
 

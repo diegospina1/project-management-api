@@ -1,6 +1,9 @@
 package com.kibana.project_management.service;
 
 import com.kibana.project_management.domain.empleado.*;
+import com.kibana.project_management.domain.empleado.dto.DatosActualizarEmpleado;
+import com.kibana.project_management.domain.empleado.dto.DatosActualizarPassword;
+import com.kibana.project_management.domain.empleado.dto.DatosCreacionEmpleado;
 import com.kibana.project_management.service.errors.exceptions.ValidacionDeIntegridad;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

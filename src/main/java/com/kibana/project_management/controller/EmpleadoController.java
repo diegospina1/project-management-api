@@ -1,6 +1,10 @@
 package com.kibana.project_management.controller;
 
 import com.kibana.project_management.domain.empleado.*;
+import com.kibana.project_management.domain.empleado.dto.DatosActualizarEmpleado;
+import com.kibana.project_management.domain.empleado.dto.DatosActualizarPassword;
+import com.kibana.project_management.domain.empleado.dto.DatosCreacionEmpleado;
+import com.kibana.project_management.domain.empleado.dto.DatosRespuestaEmpleado;
 import com.kibana.project_management.service.EmpleadoService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;

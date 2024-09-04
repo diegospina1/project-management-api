@@ -1,4 +1,4 @@
-package com.kibana.project_management.domain.cliente;
+package com.kibana.project_management.domain.cliente.dto;
 
 import jakarta.validation.constraints.NotBlank;
 

@@ -1,9 +1,9 @@
 package com.kibana.project_management.controller;
 
 import com.kibana.project_management.domain.cliente.Cliente;
-import com.kibana.project_management.domain.cliente.DatosActualizarCliente;
-import com.kibana.project_management.domain.cliente.DatosCreacionCliente;
-import com.kibana.project_management.domain.cliente.DatosRespuestaCliente;
+import com.kibana.project_management.domain.cliente.dto.DatosActualizarCliente;
+import com.kibana.project_management.domain.cliente.dto.DatosCreacionCliente;
+import com.kibana.project_management.domain.cliente.dto.DatosRespuestaCliente;
 import com.kibana.project_management.service.ClienteService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -69,5 +69,11 @@ public class ClienteController {
     public ResponseEntity<Void> activarCliente(@PathVariable("id") Long id){
         clienteService.activarCliente(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/listar/name/{name}")
+    public ResponseEntity<Page<DatosRespuestaCliente>> listarPorUser(@PathVariable("name") String name, Pageable pages){
+        Page<Cliente> cliente = clienteService.buscarClientePorNombre(name, pages);
+        return ResponseEntity.ok(cliente.map(DatosRespuestaCliente::new));
     }
 }

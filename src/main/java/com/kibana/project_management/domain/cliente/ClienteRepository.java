@@ -1,5 +1,6 @@
 package com.kibana.project_management.domain.cliente;
 
+import com.kibana.project_management.domain.cliente.dto.DatosActualizarCliente;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -27,4 +28,8 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     void activarCliente(Long id);
 
     Page<Cliente> findAllByActivoTrue(Pageable pages);
+
+    //Encontrar cliente por user
+    @Query("select c from Cliente c where c.nombres = :#{#nombre}")
+    Page<Cliente> buscarPorNombre(@Param("nombre") String nombre, Pageable pages);
 }

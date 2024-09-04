@@ -1,4 +1,6 @@
-package com.kibana.project_management.domain.cliente;
+package com.kibana.project_management.domain.cliente.dto;
+
+import com.kibana.project_management.domain.cliente.Cliente;
 
 public record DatosRespuestaCliente(
         Long id,

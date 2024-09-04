@@ -1,0 +1,1 @@
+alter table tareas add fecha_creacion datetime default current_timestamp();

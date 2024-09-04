@@ -3,7 +3,9 @@ package com.kibana.project_management.domain.tarea.subentities.clasificacion;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface ClasificacionRepository extends JpaRepository<Clasificacion, Long> {
-    Clasificacion findByClasificacion(String clasificacion);
+    Optional<Clasificacion> findByClasificacion(String clasificacion);
 }

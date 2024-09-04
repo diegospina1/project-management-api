@@ -1,6 +1,7 @@
 package com.kibana.project_management.domain.tarea;
 
 import com.kibana.project_management.domain.cliente.Cliente;
+import com.kibana.project_management.domain.tarea.dto.DatosActualizarTarea;
 import com.kibana.project_management.domain.tarea.dto.DatosCreacionTarea;
 import com.kibana.project_management.domain.tarea.subentities.clasificacion.Clasificacion;
 import com.kibana.project_management.domain.tarea.subentities.linea.Linea;
@@ -55,6 +56,22 @@ public class Tarea {
         this.fecha_creacion = Instant.now().minus(5, ChronoUnit.HOURS);
         this.archivo_id = 1L;
         this.activo = true;
+    }
+
+    public void actualizarTarea(DatosActualizarTarea datosActualizarTarea, Clasificacion clasificacion, Prioridad prioridad,
+                                Linea linea){
+        if(datosActualizarTarea.cantidad() != null){
+            this.cantidad = datosActualizarTarea.cantidad();
+        }
+        if ((datosActualizarTarea.clasificacion() != null)){
+            this.clasificacion = clasificacion;
+        }
+        if(datosActualizarTarea.linea() != null){
+            this.linea = linea;
+        }
+        if(datosActualizarTarea.prioridad() != null){
+            this.prioridad = prioridad;
+        }
     }
 
     public void desactivarTarea() {

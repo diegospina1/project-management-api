@@ -1,4 +1,4 @@
-package com.kibana.project_management.domain.tarea.subentities.clasificacion;
+package com.kibana.project_management.domain.tarea.clasificacion;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

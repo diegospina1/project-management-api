@@ -1,0 +1,1 @@
+alter table empleado_tarea drop tiempo;

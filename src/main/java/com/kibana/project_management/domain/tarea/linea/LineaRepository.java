@@ -1,4 +1,4 @@
-package com.kibana.project_management.domain.tarea.subentities.linea;
+package com.kibana.project_management.domain.tarea.linea;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

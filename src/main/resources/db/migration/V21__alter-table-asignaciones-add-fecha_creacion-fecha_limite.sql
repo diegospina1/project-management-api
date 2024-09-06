@@ -1,0 +1,1 @@
+alter table asignaciones add (fecha_creacion datetime not null, fecha_limite datetime not null);

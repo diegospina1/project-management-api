@@ -1,11 +1,11 @@
 package com.kibana.project_management.service.enum_service;
 
-import com.kibana.project_management.domain.tarea.subentities.clasificacion.Clasificacion;
-import com.kibana.project_management.domain.tarea.subentities.clasificacion.ClasificacionEnum;
-import com.kibana.project_management.domain.tarea.subentities.linea.Linea;
-import com.kibana.project_management.domain.tarea.subentities.linea.LineaEnum;
-import com.kibana.project_management.domain.tarea.subentities.prioridad.Prioridad;
-import com.kibana.project_management.domain.tarea.subentities.prioridad.PrioridadEnum;
+import com.kibana.project_management.domain.tarea.clasificacion.Clasificacion;
+import com.kibana.project_management.domain.tarea.clasificacion.ClasificacionEnum;
+import com.kibana.project_management.domain.tarea.linea.Linea;
+import com.kibana.project_management.domain.tarea.linea.LineaEnum;
+import com.kibana.project_management.domain.tarea.prioridad.Prioridad;
+import com.kibana.project_management.domain.tarea.prioridad.PrioridadEnum;
 import com.kibana.project_management.service.enum_service.subentities_service.ClasificacionService;
 import com.kibana.project_management.service.enum_service.subentities_service.LineaService;
 import com.kibana.project_management.service.enum_service.subentities_service.PrioridadService;

@@ -1,5 +1,7 @@
 package com.kibana.project_management.domain.asignacion;
 
+import com.kibana.project_management.domain.asignacion.estado.Estado;
+import com.kibana.project_management.domain.asignacion.estado.EstadoEnum;
 import com.kibana.project_management.domain.empleado.Empleado;
 import com.kibana.project_management.domain.tarea.Tarea;
 import jakarta.persistence.*;
@@ -8,12 +10,13 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.sql.Time;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalTime;
+import java.util.Timer;
 
 @Entity(name = "Asignacion")
-@Table(name = "empleado_tarea")
+@Table(name = "asignaciones")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,14 +26,18 @@ public class Asignacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Tarea.class)
     private Tarea tarea;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Empleado.class)
     private Empleado empleado;
-    private LocalTime tiempo;
-    @Enumerated(EnumType.STRING)
+    @ManyToOne(targetEntity = Estado.class)
     private Estado estado;
+    private Instant fecha_creacion;
+    private Instant fecha_limite;
 
+    public void actualizarEstado(Estado estado){
+        this.estado = estado;
+    }
 
 
 }

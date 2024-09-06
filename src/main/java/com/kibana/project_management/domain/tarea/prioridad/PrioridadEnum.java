@@ -1,4 +1,4 @@
-package com.kibana.project_management.domain.tarea.subentities.prioridad;
+package com.kibana.project_management.domain.tarea.prioridad;
 
 public enum PrioridadEnum {
     BAJA,

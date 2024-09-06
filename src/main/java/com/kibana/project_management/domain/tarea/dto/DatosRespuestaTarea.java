@@ -2,9 +2,9 @@ package com.kibana.project_management.domain.tarea.dto;
 
 import com.kibana.project_management.domain.cliente.dto.DatosRespuestaCliente;
 import com.kibana.project_management.domain.tarea.Tarea;
-import com.kibana.project_management.domain.tarea.subentities.clasificacion.ClasificacionEnum;
-import com.kibana.project_management.domain.tarea.subentities.linea.LineaEnum;
-import com.kibana.project_management.domain.tarea.subentities.prioridad.PrioridadEnum;
+import com.kibana.project_management.domain.tarea.clasificacion.ClasificacionEnum;
+import com.kibana.project_management.domain.tarea.linea.LineaEnum;
+import com.kibana.project_management.domain.tarea.prioridad.PrioridadEnum;
 
 import java.time.Instant;
 

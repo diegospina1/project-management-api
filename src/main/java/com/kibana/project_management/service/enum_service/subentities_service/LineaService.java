@@ -1,8 +1,8 @@
 package com.kibana.project_management.service.enum_service.subentities_service;
 
-import com.kibana.project_management.domain.tarea.subentities.linea.Linea;
-import com.kibana.project_management.domain.tarea.subentities.linea.LineaEnum;
-import com.kibana.project_management.domain.tarea.subentities.linea.LineaRepository;
+import com.kibana.project_management.domain.tarea.linea.Linea;
+import com.kibana.project_management.domain.tarea.linea.LineaEnum;
+import com.kibana.project_management.domain.tarea.linea.LineaRepository;
 import com.kibana.project_management.service.errors.exceptions.NoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

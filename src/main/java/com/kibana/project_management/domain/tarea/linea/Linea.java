@@ -1,4 +1,4 @@
-package com.kibana.project_management.domain.tarea.subentities.prioridad;
+package com.kibana.project_management.domain.tarea.linea;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,23 +6,23 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "Prioridad")
-@Table(name = "prioridades")
+@Entity(name = "Linea")
+@Table(name = "lineas")
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class Prioridad {
+public class Linea {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String prioridad;
+    private String linea;
 
     @Override
     public String toString() {
-        return "Prioridad{" +
+        return "Linea{" +
                 "id=" + id +
-                ", prioridad='" + prioridad + '\'' +
+                ", linea='" + linea + '\'' +
                 '}';
     }
 }

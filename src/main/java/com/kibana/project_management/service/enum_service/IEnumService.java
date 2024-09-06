@@ -1,8 +1,8 @@
 package com.kibana.project_management.service.enum_service;
 
-import com.kibana.project_management.domain.tarea.subentities.clasificacion.Clasificacion;
-import com.kibana.project_management.domain.tarea.subentities.linea.Linea;
-import com.kibana.project_management.domain.tarea.subentities.prioridad.Prioridad;
+import com.kibana.project_management.domain.tarea.clasificacion.Clasificacion;
+import com.kibana.project_management.domain.tarea.linea.Linea;
+import com.kibana.project_management.domain.tarea.prioridad.Prioridad;
 import org.springframework.stereotype.Service;
 
 @Service

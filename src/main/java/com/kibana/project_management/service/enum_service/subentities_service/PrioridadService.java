@@ -1,8 +1,8 @@
 package com.kibana.project_management.service.enum_service.subentities_service;
 
-import com.kibana.project_management.domain.tarea.subentities.prioridad.Prioridad;
-import com.kibana.project_management.domain.tarea.subentities.prioridad.PrioridadEnum;
-import com.kibana.project_management.domain.tarea.subentities.prioridad.PrioridadRepository;
+import com.kibana.project_management.domain.tarea.prioridad.Prioridad;
+import com.kibana.project_management.domain.tarea.prioridad.PrioridadEnum;
+import com.kibana.project_management.domain.tarea.prioridad.PrioridadRepository;
 import com.kibana.project_management.service.errors.exceptions.NoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
